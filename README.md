@@ -1,6 +1,6 @@
 # React Login Examples
 
-This repository contains three different login examples. Please read [A Quick Guide to React Login Options](https://developer.okta.com/blog/2020/12/16/react-login) to see how it was created.
+This repository contains three different login examples (Okta-hosted, Sign-In Widget, and custom login form). Please read [A Quick Guide to React Login Options](https://developer.okta.com/blog/2020/12/16/react-login) to see how it was created.
 
 **Prerequisites:**
 
