@@ -9,14 +9,14 @@ import { LoginCallback, SecureRoute, Security } from '@okta/okta-react';
 import { OktaAuth } from '@okta/okta-auth-js';
 
 const oktaAuth = new OktaAuth({
-  issuer: 'https://dev-133320.okta.com/oauth2/default',
-  clientId: '0oa6irwa24UyTxCpf357',
+  issuer: 'https://dev-6974382.okta.com/oauth2/default',
+  clientId: '0oa2i1po7LTnjRN6S5d6',
   redirectUri: window.location.origin + '/callback'
 });
 
-export default () => {
+function SecuredApp() {
   const history = useHistory();
-  
+
   const onAuthRequired = function() {
     history.push('/login')
   }
@@ -31,4 +31,5 @@ export default () => {
     </Security>
   );
 }
-  
+
+export default SecuredApp;

@@ -14,7 +14,7 @@ class OktaSignInWidget extends Component {
 
     this.oktaAuth = new OktaAuth({
       issuer: props.baseUrl,
-      clientId: '0oa6irwa24UyTxCpf357',
+      clientId: '0oa2i1po7LTnjRN6S5d6',
       pkce: true
     });
 
