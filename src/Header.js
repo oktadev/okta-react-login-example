@@ -5,8 +5,8 @@ import { useOktaAuth } from '@okta/okta-react';
 function Header() {
   const { oktaAuth, authState } = useOktaAuth();
 
-  const login = () => { oktaAuth.signInWithRedirect(); }
-  const logout = () => { oktaAuth.signOut(); }
+  const login = async () => { await oktaAuth.signInWithRedirect(); }
+  const logout = async () => { await oktaAuth.signOut(); }
 
   const userText = authState.isAuthenticated
     ? <button onClick={ logout }>Logout</button>
