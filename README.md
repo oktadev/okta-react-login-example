@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+# React Login Examples
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains three different login examples (Okta-hosted, Sign-In Widget, and custom login form). Please read [A Quick Guide to React Login Options](https://developer.okta.com/blog/2020/12/16/react-login) to see how it was created.
 
-## Available Scripts
+**Prerequisites:**
 
-In the project directory, you can run:
+- [Node 14](https://nodejs.org/)
+- [Okta CLI 0.7.1+](https://github.com/okta/okta-cli)
 
-### `yarn start`
+> [Okta](https://developer.okta.com/) has Authentication and User Management APIs that reduce development time with instant-on, scalable user infrastructure. Okta's intuitive API and expert support make it easy for developers to authenticate, manage and secure users and roles in any application.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* [Getting Started](#getting-started)
+* [Links](#links)
+* [Help](#help)
+* [License](#license)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting Started
 
-### `yarn test`
+To run this example, run the following commands:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone https://github.com/oktadeveloper/okta-react-login-example.git
+cd okta-react-login-example
+```
 
-### `yarn build`
+### Create the OIDC Application in Okta
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Register for a free developer account with the following simple commands using the [Okta CLI](https://github.com/okta/okta-cli), in the project root folder:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```shell
+okta register
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Provide the required information. Once you register, create a client application in Okta with the following command:
 
-### `yarn eject`
+```shell
+okta apps create
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+You will be prompted to select the following options:
+- Type of Application: **2: SPA**
+- Redirect URI: `http://localhost:3000/callback`
+- Logout Redirect URI: `http://localhost:3000`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The application configuration will be printed to your screen:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```shell
+Okta application configuration:
+Issuer:    https://dev-133320.okta.com/oauth2/default
+Client ID: 0oa5qedkihI7QcSoi357
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Replace the values in `src/App.js` with these values.
 
-## Learn More
+```js
+const oktaAuth = new OktaAuth({
+  issuer: 'https://{yourOktaDomain}/oauth2/default',
+  clientId: '{yourClientID}',
+  redirectUri: window.location.origin + '/callback'
+});
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You'll also need to update `src/OktaSignInWidget.js` with your client ID.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```js
+this.oktaAuth = new OktaAuth({
+  issuer: props.baseUrl,
+  clientId: '{yourClientID}',
+  pkce: true
+});
+```
 
-### Code Splitting
+Start your app and you should be able to log in.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```shell
+npm start
+```
 
-### Analyzing the Bundle Size
+This example uses Okta Auth JS and gives you full customization of your login form. The [blog post](https://developer.okta.com/blog/2020/12/16/react-login) also shows how to implement Okta-hosted login and login with the Okta Sign-In Widget.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+You can find the code for those in the [`okta-hosted`](https://github.com/oktadeveloper/okta-react-login-example/tree/okta-hosted) and [`sign-in-widget`](https://github.com/oktadeveloper/okta-react-login-example/tree/sign-in-widget) branches.
 
-### Making a Progressive Web App
+## Links
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+This example uses the following open source libraries from Okta:
 
-### Advanced Configuration
+* [Okta React SDK](https://github.com/okta/okta-react)
+* [Okta React SDK](https://github.com/okta/okta-signin-widget)
+* [Okta Auth JS SDK](https://github.com/okta/okta-auth-js)
+* [Okta CLI](https://github.com/okta/okta-cli)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Help
 
-### Deployment
+Please post any questions as comments on the [blog post](https://developer.okta.com/blog/2020/12/16/react-login), or visit our [Okta Developer Forums](https://devforum.okta.com/).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## License
 
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Apache 2.0, see [LICENSE](LICENSE).
