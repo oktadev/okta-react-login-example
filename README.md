@@ -50,7 +50,7 @@ Issuer:    https://dev-133320.okta.com/oauth2/default
 Client ID: 0oa5qedkihI7QcSoi357
 ```
 
-Replace the values in `src/SecuredApp.js` with these values.
+Replace the values in `src/App.js` with these values.
 
 ```js
 const oktaAuth = new OktaAuth({
