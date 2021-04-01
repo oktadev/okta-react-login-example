@@ -21,7 +21,7 @@ function Login() {
   return authState.isAuthenticated ?
     <Redirect to={{ pathname: '/' }}/> :
     <OktaSignInWidget
-      baseUrl='https://dev-6974382.okta.com'
+      baseUrl='https://dev-9323263.okta.com'
       onSuccess={onSuccess}
       onError={onError}/>;
 }
