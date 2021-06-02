@@ -70,6 +70,23 @@ this.oktaAuth = new OktaAuth({
 });
 ```
 
+Finally, you'll need to update `src/Login.js` with your Okta domain.
+
+```js
+  return authState.isAuthenticated ?
+    <Redirect to={{ pathname: '/' }}/> :
+    <OktaSignInWidget
+      baseUrl='https://{yourOktaDomain}'
+      onSuccess={onSuccess}
+      onError={onError}/>;
+```
+
+If you haven't done so already, install the dependencies.
+
+```shell
+npm install
+```
+
 Start your app and you should be able to log in.
 
 ```shell
@@ -85,7 +102,7 @@ You can find the code for those in the [`okta-hosted`](https://github.com/oktade
 This example uses the following open source libraries from Okta:
 
 * [Okta React SDK](https://github.com/okta/okta-react)
-* [Okta React SDK](https://github.com/okta/okta-signin-widget)
+* [Okta SignIn Widget](https://github.com/okta/okta-signin-widget)
 * [Okta Auth JS SDK](https://github.com/okta/okta-auth-js)
 * [Okta CLI](https://github.com/okta/okta-cli)
 
